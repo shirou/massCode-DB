@@ -364,6 +364,35 @@
         "createdAt": 1650265026003,
         "updatedAt": 1650446379759
       }
+    },
+    {
+      "name": "read from stdin",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "1UPiwSvd"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "import sys\n\nfor line in sys.stdin:\n    print(line)"
+        }
+      ],
+      "id": "daHphJnj",
+      "createdAt": 1650877052852,
+      "updatedAt": 1650877146880,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
     }
   ],
   "tags": [
