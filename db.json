@@ -1,0 +1,389 @@
+{
+  "folders": [
+    {
+      "id": "wx0zBeU7",
+      "name": "Inbox",
+      "defaultLanguage": "plain_text",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": true,
+      "createdAt": 1650254899266,
+      "updatedAt": 1650254899266
+    },
+    {
+      "id": "OHiW7EOE",
+      "name": "Default",
+      "defaultLanguage": "typescript",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "createdAt": 1650254899266,
+      "updatedAt": 1650254899266
+    },
+    {
+      "name": "python",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "python",
+      "id": "RTBPgDQy",
+      "createdAt": 1650255331349,
+      "updatedAt": 1650255354558
+    },
+    {
+      "name": "go",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "golang",
+      "id": "z9-ozBUL",
+      "createdAt": 1650265026003,
+      "updatedAt": 1650446379759
+    },
+    {
+      "name": "bash",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "sh",
+      "id": "ckFFfqxt",
+      "createdAt": 1650446323604,
+      "updatedAt": 1650446407669
+    }
+  ],
+  "snippets": [
+    {
+      "name": "main",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "#!/usr/bin/env python3\n\n\ndef main():\n  pass\n\nif __name__ == \"__main__\":\n    main()\n"
+        }
+      ],
+      "id": "t5ToBfsb",
+      "createdAt": 1650255356761,
+      "updatedAt": 1650424171996,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
+    },
+    {
+      "name": "logger",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "1UPiwSvd"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "import logging\n\nfrom pythonjsonlogger import jsonlogger\n\n\ndef getLogger(name):\n    handler = logging.StreamHandler()\n    formatter = CustomJsonFormatter(\"%(time)s %(level)s %(message)s\")\n    handler.setFormatter(formatter)\n    logger = logging.getLogger(name)\n    logger.addHandler(handler)\n    logger.setLevel(logging.INFO)\n    logger.propagate = False\n    return logger\n\n\nclass CustomJsonFormatter(jsonlogger.JsonFormatter):\n    def add_fields(self, log_record, record, message_dict):\n        super(CustomJsonFormatter, self).add_fields(log_record, record, message_dict)\n        if not log_record.get(\"time\"):\n            now = datetime.datetime.utcnow().strftime(\"%Y-%m-%dT%H:%M:%S.%fZ\")\n            log_record[\"time\"] = now\n        if log_record.get(\"level\"):\n            log_record[\"level\"] = log_record[\"level\"].upper()\n        else:\n            log_record[\"level\"] = record.levelname\n\n"
+        }
+      ],
+      "id": "nPhDajoQ",
+      "createdAt": 1650255392466,
+      "updatedAt": 1650257441815,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
+    },
+    {
+      "name": "zap logger setup",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "5M05zwBC"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "plain_text",
+          "value": "package main\n\nimport (\n\t\"go.uber.org/zap\"\n\t\"go.uber.org/zap/zapcore\"\n)\n\nvar logger *zap.SugaredLogger\n\nfunc setupLog(verbose bool, logJson bool) *zap.Logger {\n\tcfg := zap.NewProductionConfig()\n\tcfg.EncoderConfig = newEncoderConfig()\n\tif verbose {\n\t\tcfg.Level = zap.NewAtomicLevelAt(zap.DebugLevel)\n\t}\n\tcfg.Encoding = \"json\"\n\n\tcfg.OutputPaths = []string{\"stdout\"}\n\tcfg.ErrorOutputPaths = []string{\"stderr\"}\n\tzapLogger, _ := cfg.Build()\n\tlogger = zapLogger.Sugar()\n\treturn zapLogger\n}\n\nfunc newEncoderConfig() zapcore.EncoderConfig {\n\tcfg := zap.NewProductionEncoderConfig()\n\tcfg.TimeKey = \"timestamp\"\n\tcfg.LevelKey = \"level\"\n\tcfg.MessageKey = \"message\"\n\tcfg.EncodeTime = zapcore.RFC3339TimeEncoder\n\n\treturn cfg\n}"
+        }
+      ],
+      "id": "Hhq9Y0wl",
+      "createdAt": 1650265040184,
+      "updatedAt": 1650446385542,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    },
+    {
+      "name": "csv read",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "1UPiwSvd"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "import csv\n\n\ndef read(filename: str):\n    with open(filename) as csvfile:\n        reader = csv.reader(csvfile)\n        for row in reader:\n            print(', '.join(row))"
+        }
+      ],
+      "id": "nDxq7JaW",
+      "createdAt": 1650424175261,
+      "updatedAt": 1650446370129,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
+    },
+    {
+      "name": "dataclass",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "1UPiwSvd"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "from dataclasses import dataclass\r\n\r\n@dataclass\r\nclass InventoryItem:\r\n    \"\"\"Class for keeping track of an item in inventory.\"\"\"\r\n    name: str\r\n    unit_price: float\r\n    quantity_on_hand: int = 0\r\n    mylist: list[int] = field(default_factory=list)"
+        }
+      ],
+      "id": "7d_0KaR5",
+      "createdAt": 1650424563792,
+      "updatedAt": 1650446366338,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
+    },
+    {
+      "name": "ticker",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "5M05zwBC"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "plain_text",
+          "value": "    ticker := time.NewTicker(500 * time.Millisecond)\r\n    done := make(chan bool)\r\n\r\n    for {\r\n        select {\r\n        case <-done:\r\n            return\r\n        case t := <-ticker.C:\r\n            fmt.Println(\"Tick at\", t)\r\n        }\r\n    }\r\n"
+        }
+      ],
+      "id": "8EnKuF1i",
+      "createdAt": 1650444415016,
+      "updatedAt": 1650446359195,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    },
+    {
+      "name": "secure start",
+      "folderId": "ckFFfqxt",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "WICoyFNO"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "plain_text",
+          "value": "#!/usr/bin/env bash\r\n\r\nset -euf -o pipefail"
+        }
+      ],
+      "id": "9D1wdFv2",
+      "createdAt": 1650446328282,
+      "updatedAt": 1650446419970,
+      "folder": {
+        "name": "bash",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "sh",
+        "id": "ckFFfqxt",
+        "createdAt": 1650446323604,
+        "updatedAt": 1650446407669
+      }
+    },
+    {
+      "name": "Simple HTTP Server",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "5M05zwBC"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "golang",
+          "value": "package main\r\n\r\nimport (\r\n\t\"context\"\r\n\t\"flag\"\r\n\t\"fmt\"\r\n\t\"net/http\"\r\n\t\"os\"\r\n\t\"os/signal\"\r\n\t\"strings\"\r\n\t\"syscall\"\r\n\t\"time\"\r\n\r\n\t\"go.uber.org/zap\"\r\n)\r\n\r\nvar (\r\n\tport int\r\n)\r\n\r\nconst (\r\n\tserverReadHeaderTimeout = 60 * time.Second\r\n\tserverReadTimeout       = 60 * time.Second\r\n\tserverWriteTimeout      = 60 * time.Second\r\n\tshutdownTimeout         = 10 * time.Second\r\n)\r\n\r\nvar logger *zap.SugaredLogger\r\n\r\nfunc health(w http.ResponseWriter, r *http.Request) {\r\n\tfmt.Fprintf(w, \"ok\")\r\n}\r\n\r\nfunc run() error {\r\n\tctx, cancel := context.WithCancel(context.Background())\r\n\tdefer cancel()\r\n\r\n\troot := http.NewServeMux()\r\n\r\n\troot.HandleFunc(\"/health\", health)\r\n\r\n\tsrv := &http.Server{\r\n\t\tAddr:              fmt.Sprintf(\":%d\", port),\r\n\t\tHandler:           http.AllowQuerySemicolons(root),\r\n\t\tReadHeaderTimeout: serverReadHeaderTimeout,\r\n\t\tReadTimeout:       serverReadTimeout,\r\n\t\tWriteTimeout:      serverWriteTimeout,\r\n\t}\r\n\r\n\tgo func() {\r\n\t\tif err := srv.ListenAndServe(); err != http.ErrServerClosed {\r\n\t\t\tlogger.Errorw(\"Failed to listen and serve\",\r\n\t\t\t\t\"error\", err)\r\n\t\t}\r\n\t}()\r\n\r\n\tquit := make(chan os.Signal, 1)\r\n\tsignal.Notify(quit, syscall.SIGTERM, os.Interrupt)\r\n\r\n\t// waiting shutdown\r\n\trecvSignal := <-quit\r\n\tlogger.Warnw(\"SIGNAL received, start shutdown\",\r\n\t\tzap.String(\"signal\", recvSignal.String()),\r\n\t)\r\n\r\n\tshutdownCtx, shutdownCancel := context.WithTimeout(ctx, shutdownTimeout)\r\n\tdefer shutdownCancel()\r\n\tif err := srv.Shutdown(shutdownCtx); err != nil {\r\n\t\t// Error from closing listeners, or context timeout\r\n\t\tlogger.Errorw(\"gracefully shutdown failed\",\r\n\t\t\tzap.Error(err),\r\n\t\t)\r\n\t}\r\n\tlogger.Warn(\"server shutdown\")\r\n\treturn nil\r\n}\r\n\r\nfunc main() {\r\n\tflag.IntVar(&port, \"port\", 8080, \"Port no of HTTP server\")\r\n\tflag.VisitAll(func(f *flag.Flag) {\r\n\t\tif s := os.Getenv(strings.ToUpper(f.Name)); s != \"\" {\r\n\t\t\tf.Value.Set(s)\r\n\t\t}\r\n\t})\r\n\tflag.Parse()\r\n\r\n\tlogger = NewLogger()\r\n\tdefer logger.Sync() // flush log if any at exit\r\n\tlogger.Infow(\"start server\",\r\n\t\tzap.Int(\"port\", port),\r\n\t)\r\n\r\n\tif err := run(); err != nil {\r\n\t\tlogger.Fatal(err)\r\n\t}\r\n}\r\n"
+        }
+      ],
+      "id": "cO7PFSYk",
+      "createdAt": 1650620526922,
+      "updatedAt": 1650620551817,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    },
+    {
+      "name": "to json",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [
+        "5M05zwBC"
+      ],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "golang",
+          "value": "b, err := json.Marshal(obj)\r\nif err != nil {\r\n    return err\r\n}"
+        }
+      ],
+      "id": "RY53U_du",
+      "createdAt": 1650863299126,
+      "updatedAt": 1650863405436,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    },
+    {
+      "name": "from json",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "golang",
+          "value": "var p Person\r\nif err := json.Unmarshal(byte(jsonStr), &p); err != nil {\r\n  return err\r\n}"
+        }
+      ],
+      "id": "rl8KsLhA",
+      "createdAt": 1650863339813,
+      "updatedAt": 1650863445795,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    },
+    {
+      "name": "json struct",
+      "folderId": "z9-ozBUL",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "golang",
+          "value": "type Person struct {\r\n\tName   string  `json:\"name\"`\r\n}\r\n"
+        }
+      ],
+      "id": "aOUYD8uM",
+      "createdAt": 1650863407542,
+      "updatedAt": 1650863412060,
+      "folder": {
+        "name": "go",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "golang",
+        "id": "z9-ozBUL",
+        "createdAt": 1650265026003,
+        "updatedAt": 1650446379759
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "python",
+      "id": "1UPiwSvd",
+      "createdAt": 1650257441793,
+      "updatedAt": 1650257441793
+    },
+    {
+      "name": "go",
+      "id": "5M05zwBC",
+      "createdAt": 1650446359179,
+      "updatedAt": 1650446359179
+    },
+    {
+      "name": "bash",
+      "id": "WICoyFNO",
+      "createdAt": 1650446362306,
+      "updatedAt": 1650446362306
+    }
+  ]
+}
