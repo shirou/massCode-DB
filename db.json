@@ -393,6 +393,33 @@
         "createdAt": 1650255331349,
         "updatedAt": 1650255354558
       }
+    },
+    {
+      "name": "split into n",
+      "folderId": "RTBPgDQy",
+      "isDeleted": false,
+      "isFavorites": false,
+      "tagsIds": [],
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "# >>> a = ['A', 'B', 'C', 'D', 'E', 'F', 'G']\n# >>> n = 2\n# >>> [a[i:i+n] for i in range(0, len(a), n)]\n# [['A', 'B'], ['C', 'D'], ['E', 'F'], ['G']]\n# >>> n = 3\n# >>> [a[i:i+n] for i in range(0, len(a), n)]\n# [['A', 'B', 'C'], ['D', 'E', 'F'], ['G']]\n\n[a[i:i+n] for i in range(0, len(a), n)]"
+        }
+      ],
+      "id": "uX8pbHzW",
+      "createdAt": 1653041193012,
+      "updatedAt": 1653041271466,
+      "folder": {
+        "name": "python",
+        "parentId": null,
+        "isOpen": false,
+        "isSystem": false,
+        "defaultLanguage": "python",
+        "id": "RTBPgDQy",
+        "createdAt": 1650255331349,
+        "updatedAt": 1650255354558
+      }
     }
   ],
   "tags": [
